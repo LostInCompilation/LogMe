@@ -36,12 +36,55 @@ the following restrictions:
 #include <iostream>
 
 #include "LogMe.hpp"
+#include "CLI11.hpp"
 
-int main([[maybe_unused]]int argc, [[maybe_unused]]char** argv)
+const std::string VERSION_STRING = "Version 0.1";
+
+int ParseCommandLine(int argc, char** argv)
 {
+    std::unique_ptr<CLI::App> cliApp = std::make_unique<CLI::App>("Description", "LogMe_testing");
+    
+    //argv = cliApp->ensure_utf8(argv); // For Unicode support on all platforms
+
+    // *******************************************************
+    // Settings
+    cliApp->footer("Footer");
+    cliApp->get_formatter()->label("TEXT", "STRING");
+#ifdef PLATFORM_WINDOWS
+    cliApp->allow_windows_style_options();
+#endif
+    
+    // *******************************************************
+    // Command line options
+    //cliApp->add_option("-p,--path", startPathStr, "Path to start scanning in");
+    //cliApp->add_flag("-a,--all", m_CLIShowAllFiles, "Show hidden files");//->group("SETTINGS");
+    
+    // *******************************************************
+    // Special flags
+    cliApp->set_version_flag("-v,--version", VERSION_STRING)->group("INFO");
+    cliApp->set_help_flag("-h,--help", "Display help and exit")->group("INFO");
+    
+    // *******************************************************
+    // Parse
+    try {
+        cliApp->parse(argc, argv);
+    }
+    catch (const CLI::ParseError& e) {
+        return cliApp->exit(e);
+    }
+    
+    return -1;
+}
+
+int main(int argc, char** argv)
+{
+    // Parse command line
+    const int parseReturn = ParseCommandLine(argc, argv);
+    if(parseReturn >= 0) // Error or special CLI flag?
+        return parseReturn;
+
     std::cout << "LogMe Testing Executable" << std::endl;
     std::cout << "=============================================================" << std::endl << std::endl;
-    
     
     return 0;
 }

@@ -24,6 +24,7 @@ project("LogMe_testing"
 
 # Main executable
 add_executable("${PROJECT_NAME}"
+	CLI11.hpp
 	Main.cpp
 )
 
