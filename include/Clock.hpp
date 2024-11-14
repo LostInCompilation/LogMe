@@ -29,13 +29,9 @@ the following restrictions:
 /*                      (C) 2024 Marc Schöndorf                     */
 /*                            See license                           */
 /*                                                                  */
-/*  LogMe.hpp                                                       */
-/*  Created: 28.10.2024                                             */
+/*  Clock.hpp                                                       */
+/*  Created: 14.11.2024                                             */
 /*------------------------------------------------------------------*/
-
-// Lib includes
-#include "LogMeVersion.hpp"
-#include "Clock.hpp"
 
 namespace LogMe
 {

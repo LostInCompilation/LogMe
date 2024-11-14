@@ -40,37 +40,38 @@ the following restrictions:
 
 const std::string VERSION_STRING = "Version 0.1";
 
-int ParseCommandLine(int argc, char** argv)
+int ParseCommandLine(const int argc, char** argv)
 {
-    std::unique_ptr<CLI::App> cliApp = std::make_unique<CLI::App>("Description", "LogMe_testing");
+    CLI::App cliApp("Description", "LogMe_testing");
     
-    //argv = cliApp->ensure_utf8(argv); // For Unicode support on all platforms
-
+    // For Unicode support on all platforms
+    char** const unicode_argv = cliApp.ensure_utf8(argv);
+    
     // *******************************************************
     // Settings
-    cliApp->footer("Footer");
-    cliApp->get_formatter()->label("TEXT", "STRING");
+    cliApp.footer("Footer");
+    cliApp.get_formatter()->label("TEXT", "STRING");
 #ifdef PLATFORM_WINDOWS
     cliApp->allow_windows_style_options();
 #endif
     
     // *******************************************************
     // Command line options
-    //cliApp->add_option("-p,--path", startPathStr, "Path to start scanning in");
-    //cliApp->add_flag("-a,--all", m_CLIShowAllFiles, "Show hidden files");//->group("SETTINGS");
+    //cliApp.add_option("-p,--path", startPathStr, "Path to start scanning in");
+    //cliApp.add_flag("-a,--all", m_CLIShowAllFiles, "Show hidden files");//->group("SETTINGS");
     
     // *******************************************************
     // Special flags
-    cliApp->set_version_flag("-v,--version", VERSION_STRING)->group("INFO");
-    cliApp->set_help_flag("-h,--help", "Display help and exit")->group("INFO");
+    cliApp.set_version_flag("-v,--version", VERSION_STRING)->group("INFO");
+    cliApp.set_help_flag("-h,--help", "Display help and exit")->group("INFO");
     
     // *******************************************************
     // Parse
     try {
-        cliApp->parse(argc, argv);
+        cliApp.parse(argc, unicode_argv);
     }
     catch (const CLI::ParseError& e) {
-        return cliApp->exit(e);
+        return cliApp.exit(e);
     }
     
     return -1;

@@ -9,5 +9,5 @@ const int32_t CM_VERSION_PATCH = 0;
 const std::string CM_VERSION_STRING = "v0.1.0";
 
 const std::string CM_APP_CMAKE_NAME = "LogMe";
-const std::string CM_APP_CMAKE_DESCRIPTION = "Asynchronous and fast C++20 Logging Library.";
+const std::string CM_APP_CMAKE_DESCRIPTION = "Fast asynchronous C++20 Logging Library.";
 };

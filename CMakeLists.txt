@@ -43,7 +43,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin/release")
 # Our project
 project("LogMe"
 	VERSION 0.1.0
-	DESCRIPTION "Asynchronous and fast C++20 Logging Library."
+	DESCRIPTION "Fast asynchronous C++20 Logging Library."
 	LANGUAGES CXX
 )
 
@@ -51,7 +51,9 @@ project("LogMe"
 add_library("${PROJECT_NAME}"
     include/LogMe.hpp
 	include/LogMeVersion.hpp
+	include/Clock.hpp
 	src/LogMe.cpp
+	src/Clock.cpp
 )
 
 # The projects include directories
