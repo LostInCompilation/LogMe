@@ -51,9 +51,9 @@ project("LogMe"
 add_library("${PROJECT_NAME}"
     include/LogMe.hpp
 	include/LogMeVersion.hpp
+	include/Platform.hpp
 	include/Clock.hpp
 	src/LogMe.cpp
-	src/Clock.cpp
 )
 
 # The projects include directories

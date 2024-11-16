@@ -87,5 +87,9 @@ int main(int argc, char** argv)
     std::cout << "LogMe Testing Executable" << std::endl;
     std::cout << "=============================================================" << std::endl << std::endl;
     
+    std::cout << "HighRes clock is steady: " << std::boolalpha << std::chrono::high_resolution_clock::is_steady << std::endl;
+    std::cout << "HighRes clock ns: " << LogMe::Clock::GetNanoSeconds() << std::endl;
+    std::cout << "HighRes clock s: " << LogMe::Clock::GetSeconds() << std::endl;
+    
     return 0;
 }

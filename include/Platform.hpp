@@ -29,7 +29,11 @@ the following restrictions:
 /*                      (C) 2024 Marc Schöndorf                     */
 /*                            See license                           */
 /*                                                                  */
-/*  Clock.cpp                                                       */
-/*  Created: 14.11.2024                                             */
+/*  Platform.hpp                                                    */
+/*  Created: 28.10.2024                                             */
 /*------------------------------------------------------------------*/
 
+// Check for chrono lib support
+#ifndef __cpp_lib_chrono
+#error Chrono library is not supported by this compiler or C++ standard.
+#endif

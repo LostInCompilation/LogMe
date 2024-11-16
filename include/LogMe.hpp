@@ -33,8 +33,13 @@ the following restrictions:
 /*  Created: 28.10.2024                                             */
 /*------------------------------------------------------------------*/
 
+// System includes
+#include <cstdint>
+#include <chrono>
+
 // Lib includes
 #include "LogMeVersion.hpp"
+#include "Platform.hpp"
 #include "Clock.hpp"
 
 namespace LogMe

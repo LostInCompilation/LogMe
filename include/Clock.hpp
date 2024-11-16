@@ -35,5 +35,23 @@ the following restrictions:
 
 namespace LogMe
 {
-
+class Clock final
+{
+private:
+    using HighResClock = std::chrono::high_resolution_clock;
+    
+    using Rep = std::chrono::high_resolution_clock::duration::rep;
+    using Period = std::chrono::high_resolution_clock::duration::period;
+    
+public:
+    Clock() = delete;
+    
+    static std::chrono::time_point<HighResClock> Now()          { return HighResClock::now(); }
+    static std::chrono::duration<Rep, Period> TimeSinceEpoch()  { return Now().time_since_epoch(); }
+    
+    static std::uintmax_t GetNanoSeconds()  { return std::chrono::duration_cast<std::chrono::nanoseconds>(TimeSinceEpoch()).count(); }
+    static std::uintmax_t GetMicroSeconds() { return std::chrono::duration_cast<std::chrono::microseconds>(TimeSinceEpoch()).count(); }
+    static std::uintmax_t GetMilliSeconds() { return std::chrono::duration_cast<std::chrono::milliseconds>(TimeSinceEpoch()).count(); }
+    static std::uintmax_t GetSeconds()      { return std::chrono::duration_cast<std::chrono::seconds>(TimeSinceEpoch()).count(); }
+};
 }
