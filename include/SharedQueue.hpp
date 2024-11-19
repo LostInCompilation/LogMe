@@ -43,7 +43,7 @@ private:
     std::mutex      m_Mutex;
     
 public:
-    //SharedQueue();
+    SharedQueue() {}
     //~SharedQueue();
     
     SharedQueue(const SharedQueue& other) = delete;
@@ -53,6 +53,18 @@ public:
     {
         std::scoped_lock<std::mutex> lock(m_Mutex);
         m_Queue.push(element);
+    }
+    
+    bool Front(T& element) const
+    {
+        std::scoped_lock<std::mutex> lock(m_Mutex);
+        
+        if(m_Queue.empty())
+            return false;
+        
+        element = m_Queue.front();
+        
+        return true;
     }
     
     bool Pop(T& element)

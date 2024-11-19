@@ -94,5 +94,8 @@ int main(int argc, char** argv)
     
     //auto const time = std::chrono::current_zone()->to_local(std::chrono::system_clock::now());
     
+    LogMe::SharedQueue<int> q;
+    q.Push(5);
+    
     return 0;
 }
