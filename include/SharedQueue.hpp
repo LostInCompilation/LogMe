@@ -43,8 +43,8 @@ private:
     std::mutex      m_Mutex;
     
 public:
-    SharedQueue();
-    ~SharedQueue();
+    //SharedQueue();
+    //~SharedQueue();
     
     SharedQueue(const SharedQueue& other) = delete;
     SharedQueue& operator=(const SharedQueue& other) = delete;
@@ -55,5 +55,29 @@ public:
         m_Queue.push(element);
     }
     
+    bool Pop(T& element)
+    {
+        std::scoped_lock<std::mutex> lock(m_Mutex);
+        
+        if(m_Queue.empty())
+            return false;
+        
+        element = std::move(m_Queue.front());
+        m_Queue.pop();
+        
+        return true;
+    }
+    
+    bool IsEmpty() const
+    {
+        std::scoped_lock<std::mutex> lock(m_Mutex);
+        return m_Queue.empty();
+    }
+    
+    std::size_t GetSize() const
+    {
+        std::scoped_lock<std::mutex> lock(m_Mutex);
+        return m_Queue.size();
+    }
 };
 }
