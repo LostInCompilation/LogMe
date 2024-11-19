@@ -88,8 +88,11 @@ int main(int argc, char** argv)
     std::cout << "=============================================================" << std::endl << std::endl;
     
     std::cout << "HighRes clock is steady: " << std::boolalpha << std::chrono::high_resolution_clock::is_steady << std::endl;
-    std::cout << "HighRes clock ns: " << LogMe::Clock::GetNanoSeconds() << std::endl;
-    std::cout << "HighRes clock s: " << LogMe::Clock::GetSeconds() << std::endl;
+    std::cout << "HighRes clock ns: " << LogMe::Clock<>::GetNanoSeconds() << std::endl;
+    std::cout << "HighRes clock s: " << LogMe::Clock<>::GetSeconds() << std::endl;
+    std::cout << "Time: " << std::format("{:%Y/%m/%d %H:%M:%S}", LogMe::Clock<LogMe::SystemClock>::Now()) << std::endl;
+    
+    //auto const time = std::chrono::current_zone()->to_local(std::chrono::system_clock::now());
     
     return 0;
 }

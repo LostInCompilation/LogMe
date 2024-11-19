@@ -36,11 +36,14 @@ the following restrictions:
 // System includes
 #include <cstdint>
 #include <chrono>
+#include <mutex>
+#include <queue>
 
 // Lib includes
 #include "LogMeVersion.hpp"
 #include "Platform.hpp"
 #include "Clock.hpp"
+#include "SharedQueue.hpp"
 
 namespace LogMe
 {

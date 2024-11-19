@@ -29,31 +29,31 @@ the following restrictions:
 /*                      (C) 2024 Marc Schöndorf                     */
 /*                            See license                           */
 /*                                                                  */
-/*  Clock.hpp                                                       */
-/*  Created: 14.11.2024                                             */
+/*  SharedQueue.hpp                                                 */
+/*  Created: 19.11.2024                                             */
 /*------------------------------------------------------------------*/
 
 namespace LogMe
 {
-using HighResClock = std::chrono::high_resolution_clock;
-using SystemClock = std::chrono::system_clock;
-
-template <typename ClockType = HighResClock>
-class Clock final
+template <typename T>
+class SharedQueue
 {
 private:
-    using Rep = ClockType::duration::rep;
-    using Period = ClockType::duration::period;
+    std::queue<T>   m_Queue;
+    std::mutex      m_Mutex;
     
 public:
-    Clock() = delete;
+    SharedQueue();
+    ~SharedQueue();
     
-    static std::chrono::time_point<ClockType> Now()             { return ClockType::now(); }
-    static std::chrono::duration<Rep, Period> TimeSinceEpoch()  { return Now().time_since_epoch(); }
+    SharedQueue(const SharedQueue& other) = delete;
+    SharedQueue& operator=(const SharedQueue& other) = delete;
     
-    static std::uintmax_t GetNanoSeconds()  { return std::chrono::duration_cast<std::chrono::nanoseconds>(TimeSinceEpoch()).count(); }
-    static std::uintmax_t GetMicroSeconds() { return std::chrono::duration_cast<std::chrono::microseconds>(TimeSinceEpoch()).count(); }
-    static std::uintmax_t GetMilliSeconds() { return std::chrono::duration_cast<std::chrono::milliseconds>(TimeSinceEpoch()).count(); }
-    static std::uintmax_t GetSeconds()      { return std::chrono::duration_cast<std::chrono::seconds>(TimeSinceEpoch()).count(); }
+    void Push(const T& element)
+    {
+        std::scoped_lock<std::mutex> lock(m_Mutex);
+        m_Queue.push(element);
+    }
+    
 };
 }

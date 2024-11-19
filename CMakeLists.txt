@@ -53,6 +53,7 @@ add_library("${PROJECT_NAME}"
 	include/LogMeVersion.hpp
 	include/Platform.hpp
 	include/Clock.hpp
+	include/SharedQueue.hpp
 	src/LogMe.cpp
 )
 

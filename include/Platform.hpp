@@ -30,7 +30,7 @@ the following restrictions:
 /*                            See license                           */
 /*                                                                  */
 /*  Platform.hpp                                                    */
-/*  Created: 28.10.2024                                             */
+/*  Created: 14.11.2024                                             */
 /*------------------------------------------------------------------*/
 
 // Check for chrono lib support
