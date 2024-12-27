@@ -49,24 +49,14 @@ public:
     SharedQueue(const SharedQueue& other) = delete;
     SharedQueue& operator=(const SharedQueue& other) = delete;
     
+    // Add element to the end
     void Push(const T& element)
     {
         std::scoped_lock<std::mutex> lock(m_Mutex);
         m_Queue.push(element);
     }
     
-    bool Front(T& element) const
-    {
-        std::scoped_lock<std::mutex> lock(m_Mutex);
-        
-        if(m_Queue.empty())
-            return false;
-        
-        element = m_Queue.front();
-        
-        return true;
-    }
-    
+    // Remove first element
     bool Pop(T& element)
     {
         std::scoped_lock<std::mutex> lock(m_Mutex);
@@ -80,12 +70,27 @@ public:
         return true;
     }
     
+    // Get reference to first element in queue without removing it
+    bool Front(T& element) const
+    {
+        std::scoped_lock<std::mutex> lock(m_Mutex);
+        
+        if(m_Queue.empty())
+            return false;
+        
+        element = m_Queue.front();
+        
+        return true;
+    }
+    
+    // True if queue is empty
     bool IsEmpty() const
     {
         std::scoped_lock<std::mutex> lock(m_Mutex);
         return m_Queue.empty();
     }
     
+    // Size of the queue
     std::size_t GetSize() const
     {
         std::scoped_lock<std::mutex> lock(m_Mutex);
