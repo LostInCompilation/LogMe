@@ -37,15 +37,36 @@ the following restrictions:
 #include <cstdint>
 #include <chrono>
 #include <mutex>
+#include <thread>
 #include <queue>
 
 // Lib includes
 #include "LogMeVersion.hpp"
-#include "Platform.hpp"
+#include "Configuration.hpp"
 #include "Clock.hpp"
-#include "SharedQueue.hpp"
+
+// Lib modules
+//#include "SharedQueue.hpp"
+//import :SharedQueue;
 
 namespace LogMe
 {
+enum class LogLevel
+{
+    VERBOSE = 0,
+    INFO,
+    WARN,
+    ERROR,
+    CRITICAL
+};
 
+struct LogEntry
+{
+    std::thread::id     threadID;
+    
+    std::chrono::time_point<SystemClock>  timePoint;
+    LogLevel             logLevel = LogLevel::INFO;
+    
+    
+};
 }

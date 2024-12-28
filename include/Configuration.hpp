@@ -33,7 +33,17 @@ the following restrictions:
 /*  Created: 14.11.2024                                             */
 /*------------------------------------------------------------------*/
 
-// Check for chrono lib support
-#ifndef __cpp_lib_chrono
+/*------------------------------------------------------------------*/
+/*                             Settings                             */
+/*------------------------------------------------------------------*/
+#define LOGME_ENABLE_CPP_MODULES // Enable C++20 modules instead of classic header/source file design
+
+
+/*------------------------------------------------------------------*/
+/*                         Internal checks                          */
+/*                                                                  */
+/*                          DO NOT MODIFY                           */
+/*------------------------------------------------------------------*/
+#ifndef __cpp_lib_chrono // Check for chrono lib support
 #error Chrono library is not supported by this compiler or C++ standard.
 #endif

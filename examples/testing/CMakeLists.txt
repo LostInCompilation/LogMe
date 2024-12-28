@@ -15,6 +15,10 @@ cmake_minimum_required(VERSION 3.29)
 #set(CMAKE_CXX_EXTENSIONS false)
 
 ###########################################################
+# C++20 modules testing
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+
+###########################################################
 # Our project
 project("LogMe_testing"
 	VERSION 1.0.0

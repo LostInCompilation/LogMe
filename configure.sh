@@ -53,7 +53,7 @@ then
 fi
 
 # Is there just a fresh build specified with missing build type?
-if [[ "$BUILD_TYPE" == "fresh" ]] || [[ "$BUILD_TYPE" == "Fresh" ]]
+if [[ "$BUILD_TYPE" == "fresh" ]] || [[ "$BUILD_TYPE" == "Fresh" ]] || [[ "$BUILD_TYPE" == "FRESH" ]]
 then
 	echo -e "${ITALICYELLOW}Info: No build type specified. Using ${BOLDYELLOW}Release${ENDCOLOR}${ITALICYELLOW} as default build type.${ENDCOLOR}"
 	BUILD_TYPE="Release"

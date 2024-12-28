@@ -33,3 +33,4 @@ the following restrictions:
 /*  Created: 28.10.2024                                             */
 /*------------------------------------------------------------------*/
 
+#include "LogMe.hpp"

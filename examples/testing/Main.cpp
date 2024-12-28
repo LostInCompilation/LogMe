@@ -34,11 +34,14 @@ the following restrictions:
 /*------------------------------------------------------------------*/
 
 #include <iostream>
+//#include <stacktrace>
+
+import ModQueue;
 
 #include "LogMe.hpp"
 #include "CLI11.hpp"
 
-const std::string VERSION_STRING = "Version 0.1";
+const std::string APP_VERSION_STRING = "Version 0.1";
 
 int ParseCommandLine(const int argc, char** argv)
 {
@@ -62,7 +65,7 @@ int ParseCommandLine(const int argc, char** argv)
     
     // *******************************************************
     // Special flags
-    cliApp.set_version_flag("-v,--version", VERSION_STRING)->group("INFO");
+    cliApp.set_version_flag("-v,--version", APP_VERSION_STRING)->group("INFO");
     cliApp.set_help_flag("-h,--help", "Display help and exit")->group("INFO");
     
     // *******************************************************
@@ -79,14 +82,21 @@ int ParseCommandLine(const int argc, char** argv)
 
 int main(int argc, char** argv)
 {
+    LogMe::SharedQueue<int> queue;
+    queue.push_back(42);
+    
+    
+    
     // Parse command line
     const int parseReturn = ParseCommandLine(argc, argv);
     if(parseReturn >= 0) // Error or special CLI flag?
         return parseReturn;
 
-    std::cout << "LogMe Testing Executable" << std::endl;
+    // Say hello
+    std::cout << "LogMe - Testing Executable" << std::endl;
     std::cout << "=============================================================" << std::endl << std::endl;
     
+    // Print different times
     std::cout << "HighRes clock is steady: " << std::boolalpha << std::chrono::high_resolution_clock::is_steady << std::endl;
     std::cout << "HighRes clock ns: " << LogMe::Clock<>::GetNanoSeconds() << std::endl;
     std::cout << "HighRes clock s: " << LogMe::Clock<>::GetSeconds() << std::endl;
@@ -94,8 +104,9 @@ int main(int argc, char** argv)
     
     //auto const time = std::chrono::current_zone()->to_local(std::chrono::system_clock::now());
     
-    LogMe::SharedQueue<int> q;
-    q.Push(5);
+    // Stacktrace
+    //std::cout << std::endl << std::endl << "Printing Stacktrace..." << std::endl << std::endl;
+    //std::cout << std::stacktrace::current();
     
     return 0;
 }
