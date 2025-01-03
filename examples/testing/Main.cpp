@@ -36,8 +36,6 @@ the following restrictions:
 #include <iostream>
 //#include <stacktrace>
 
-import ModQueue;
-
 #include "LogMe.hpp"
 #include "CLI11.hpp"
 
@@ -81,12 +79,7 @@ int ParseCommandLine(const int argc, char** argv)
 }
 
 int main(int argc, char** argv)
-{
-    LogMe::SharedQueue<int> queue;
-    queue.push_back(42);
-    
-    
-    
+{    
     // Parse command line
     const int parseReturn = ParseCommandLine(argc, argv);
     if(parseReturn >= 0) // Error or special CLI flag?

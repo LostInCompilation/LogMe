@@ -5,7 +5,7 @@
 # Licensed under the zlib License. See LICENSE.md                              #
 ################################################################################
 
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.28)
 
 ###########################################################
 # Helper for formatting and printing text with color
@@ -20,10 +20,6 @@ set(CMAKE_POLICY_DEFAULT_CMP0077 NEW) # Needed to set options of subprojects ins
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(CMAKE_CXX_EXTENSIONS false) # Don't use GNU++
-
-###########################################################
-# C++20 modules testing
-set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 ###########################################################
 # Set build output directories
@@ -53,14 +49,8 @@ add_library("${PROJECT_NAME}"
 	include/LogMeVersion.hpp
 	include/Configuration.hpp
 	include/Clock.hpp
-	#include/SharedQueue.hpp
+	include/SharedQueue.hpp
 	src/LogMe.cpp
-)
-
-# Add the module file to the library
-target_sources("${PROJECT_NAME}"
-  PUBLIC FILE_SET CXX_MODULES FILES
-      include/SharedQueue.ixx
 )
 
 # The projects include directories

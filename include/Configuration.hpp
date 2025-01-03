@@ -36,8 +36,7 @@ the following restrictions:
 /*------------------------------------------------------------------*/
 /*                             Settings                             */
 /*------------------------------------------------------------------*/
-#define LOGME_ENABLE_CPP_MODULES // Enable C++20 modules instead of classic header/source file design
-
+// Dummy
 
 /*------------------------------------------------------------------*/
 /*                         Internal checks                          */

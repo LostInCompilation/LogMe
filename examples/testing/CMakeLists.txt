@@ -5,7 +5,7 @@
 # Licensed under the zlib License. See LICENSE.md                              #
 ################################################################################
 
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.28)
 
 ###########################################################
 # Use C++20
@@ -13,10 +13,6 @@ cmake_minimum_required(VERSION 3.29)
 #set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_CXX_STANDARD_REQUIRED true)
 #set(CMAKE_CXX_EXTENSIONS false)
-
-###########################################################
-# C++20 modules testing
-set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 ###########################################################
 # Our project

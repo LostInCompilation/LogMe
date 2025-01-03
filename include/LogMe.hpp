@@ -44,10 +44,7 @@ the following restrictions:
 #include "LogMeVersion.hpp"
 #include "Configuration.hpp"
 #include "Clock.hpp"
-
-// Lib modules
-//#include "SharedQueue.hpp"
-//import :SharedQueue;
+#include "SharedQueue.hpp"
 
 namespace LogMe
 {
@@ -66,7 +63,5 @@ struct LogEntry
     
     std::chrono::time_point<SystemClock>  timePoint;
     LogLevel             logLevel = LogLevel::INFO;
-    
-    
 };
 }

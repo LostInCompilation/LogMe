@@ -33,18 +33,10 @@ the following restrictions:
 /*  Created: 19.11.2024                                             */
 /*------------------------------------------------------------------*/
 
-//module;
-
-export module ModQueue;
-
-// Import std-lib
-import std.core;
-import std.threading;
-
 namespace LogMe
 {
 template <typename T>
-export class SharedQueue
+class SharedQueue
 {
 private:
     std::queue<T>   m_Queue;

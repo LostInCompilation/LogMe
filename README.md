@@ -20,7 +20,7 @@
 TODO
 
 ## Getting the library
-To download the library simply clone the repository:
+To get the library simply clone the GitHub repository:
 ~~~
 git clone https://github.com/LostInCompilation/LogMe
 ~~~
